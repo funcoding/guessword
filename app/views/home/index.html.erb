@@ -1,0 +1,8 @@
+<%= stylesheet_link_tag    "http://twitter.github.com/bootstrap/assets/css/bootstrap.css" %>
+<div class="hero-unit">
+<h3>Guess Word!</h3>
+<p>
+<%= link_to "Admin", words_path, {:class=>"btn btn-primary btn-large"}%>
+<%= link_to "Play Game ", {:controller => "home", :action => "game" },{:class=>"btn btn-primary btn-large"}  %>
+</p>
+</div>
