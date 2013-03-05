@@ -2,18 +2,7 @@
 <%= javascript_include_tag "http://malsup.github.com/jquery.form.js" %> 
 <%= javascript_include_tag "http://jzaefferer.github.com/jquery-validation/jquery.validate.js" %>
 <%= stylesheet_link_tag    "http://twitter.github.com/bootstrap/assets/css/bootstrap.css" %>
-<script type="text/javascript">
-$('#my-link').click(function(){
-    $.ajax({
-      url: "mypage.php",
-      context: document.body,
-      success: function(){
-        $(this).addClass("done");
-      }
-    });
-    return false;
-});
-</script>
+
 <script type="text/javascript">
 function wrong()
 {
@@ -45,11 +34,11 @@ $("#error").hide();
 <div class="navbar navbar-fixed-top">  
   <div class="navbar-inner">  
     <div class="container">
-    	
+      
 
-			<%= link_to "Home", {:controller => "home" },{:class=>'brand'}  %>
-		
-	</div>
+      <%= link_to "Home", {:controller => "home" },{:class=>'brand'}  %>
+    
+  </div>
 </div>
 </div>
 <div class="container">
@@ -57,37 +46,37 @@ $("#error").hide();
 <h3>Guess Word</h3>
 <h4 id="h3">Make a Guess</h4>
 
-<h2 ><strong >
-<p id="word">	
+<h4 ><strong >
+<p id="word"> 
 <% session[:word_to_display].values.each do |display| %>
 <%= display %>
 <% end %>
 </p>
 <p id="alphabets">
 <% ("a".."z").each do |d| %>
-	<%= link_to d, url_for( :guess => d )  %> 
+  <%= link_to d, url_for( :guess => d )  %> 
 <% end %>
 
 </p>
 <p class="choice"> Wrong Choice 
 <%= session[:count] %>
 </p>
-<% if session[:word_to_display].values == session[:word_to_display].keys %>
+<% if session[:word] == session[:word_to_display] %>
 
 <p>VOILA! CORRECT ANSWER <script>correct()</script> </p>
 <p><%= link_to "Play again", {:controller => "home", :action => "game", :guess => nil},{:class=>"btn btn-primary btn-success"}  %> </p>
 <% end %>
 <% if session[:count] == 5 %>
 <p id="error"><script>wrong();</script> The word is 
-	<% session[:word_to_display].keys.each do |display| %>
-	<%= display %>
+  <% session[:word].values.each do |display| %>
+  <%= display %>
 
-	<% end %>
-	<p><%= link_to "Play again", {:controller => "home", :action => "game", :guess => nil},{:class=>"btn btn-primary btn-success"}  %> </p>
+  <% end %>
+  <p><%= link_to "Play again", {:controller => "home", :action => "game", :guess => nil},{:class=>"btn btn-primary btn-success"}  %> </p>
 <%end%>
 </p>
 </strong>
-</h2>
+</h4>
 </div>
 </div>
 
